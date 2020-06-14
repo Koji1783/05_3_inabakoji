@@ -4,7 +4,7 @@ $str = "";
 // ファイルを開く処理
 $file=fopen('data/todo.txt','r');
 
-// ファイルロックの処理
+
 flock($file,LOCK_EX);
 
 // ファイル書き込み処理
@@ -16,7 +16,6 @@ if($file){
 }
 
 
-// ファイルアンロックの処理
 flock($file,LOCK_UN);
 
 // ファイルを閉じる処理
