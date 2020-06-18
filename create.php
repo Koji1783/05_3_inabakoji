@@ -3,29 +3,31 @@
 // exit();
 
 // データの受取
-$todo=$_POST['todo'];
-$deadline=$_POST['deadline'];
+// $ShiftJIS = $_POST;
 
 
 // 書き込みデータの作成（スペース区切りで最後に改行コードを追加）
-$write_data="{$deadline}{$todo}\n";
+// mb_convert_variables('Shift_JIS', 'UTF-8', $ShiftJIS);
 
 // ファイルを開く処理
-$file=fopen('data/todo.txt','a');
+$csv=fopen('data/data.csv','a');
 
 // ファイルロックの処理
-flock($file,LOCK_EX);
+flock($csv,LOCK_EX);
 
 // ファイル書き込み処理
-fwrite($file,$write_data);
+fputcsv($csv, $_POST);
 
 // ファイルアンロックの処理
-flock($file,LOCK_UN);
+flock($csv,LOCK_UN);
 
 // ファイルを閉じる処理
-fclose($file);
+fclose($csv);
 
 // 入力画面へ移動
-header('Location:todo_txt_input.php');
+header('Location:index.php');
 
 // txtファイルへの書き込みのみ行うので表示する画面は存在しない
+
+
+?>

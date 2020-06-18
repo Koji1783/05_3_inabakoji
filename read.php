@@ -2,24 +2,21 @@
 // 出力用の文字列（ここに読み込んだデータをタグに入れた形式で追加していく）
 $str = "";
 // ファイルを開く処理
-$file=fopen('data/todo.txt','r');
+$csv=fopen('data/data.csv','r');
 
-
-flock($file,LOCK_EX);
+flock($csv,LOCK_EX);
 
 // ファイル書き込み処理
-// 1行づつ取り出す
-if($file){
-  while($line=fgets($file)){
-    $str .= "<tr><td>{$line}</td></tr>";
-  }
+while (($data = fgetcsv($csv)) !== FALSE) {
+  $str .= "<tr><td>
+          名前：{$data[0]} メールアドレス：{$data[1]} 年齢：{$data[2]}
+          </td></tr>";
 }
 
-
-flock($file,LOCK_UN);
+flock($csv,LOCK_UN);
 
 // ファイルを閉じる処理
-fclose($file);
+fclose($csv);
 
 
 
@@ -31,17 +28,17 @@ fclose($file);
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>textファイル書き込み型todoリスト（一覧画面）</title>
+  <title>csvファイルお問い合わせリスト（一覧画面）</title>
 </head>
 
 <body>
   <fieldset>
-    <legend>textファイル書き込み型todoリスト（一覧画面）</legend>
-    <a href="todo_txt_input.php">入力画面</a>
+    <legend>csvファイルお問い合わせリスト（一覧画面）</legend>
+    <a href="index.php">入力画面</a>
     <table>
       <thead>
         <tr>
-          <th>todo</th>
+          <th>お問い合わせ</th>
         </tr>
       </thead>
       <tbody>
