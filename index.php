@@ -18,7 +18,11 @@
         メールアドレス: <input type="email" name="email">
         </div>
         <div>
-        年齢: <input type="text" name="age">
+        年齢: <input type="number" name="age">
+        </div>
+        <div>
+        <p>お問い合わせ内容:</p> 
+        <textarea name="detail" id="" cols="40" rows="10"></textarea>
         </div>
         <div>
         <button>submit</button>

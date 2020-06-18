@@ -10,8 +10,8 @@ flock($csv,LOCK_EX);
 while (($data = fgetcsv($csv)) !== FALSE) {
   $str .= "<tr><td>
           名前：{$data[0]} メールアドレス：{$data[1]} 年齢：{$data[2]}
-          </td></tr>";
-}
+          <p>お問い合わせ内容：{$data[3]}</p><br>
+          </td></tr>";}
 
 flock($csv,LOCK_UN);
 
